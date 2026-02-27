@@ -1,5 +1,8 @@
 #!/bin/bash
-
+#you can install the sofwere useing wget ( sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/zsh_install.sh)" )
+#you can install the sofwere useing curl (place holder)
+#you can install the sofwere useing place holder (place holder)
+#this project is made for arch linux kde plasma 
 #remove all ## for full functionality
 
 ansi_art='                 
@@ -15,6 +18,11 @@ echo -e "\n$ansi_art\n"
 echo By Jack Gearhart
 #inspierd by omarchy
 #this uses a lightly edited verson of the zsh install to make the code run smother line: 24
+
+#asks if you would like to continue
+read -p "do you want to install? (Y/n):" choice
+choice=${choice:-Y}
+
 
 #install all needed things
 sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig
@@ -77,4 +85,4 @@ cd
 sudo systemctl disable sddm.service
 sudo systemctl enable ly@tty2.service 
 
-exit
+echo install complete
