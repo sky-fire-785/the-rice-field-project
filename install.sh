@@ -14,27 +14,38 @@ ansi_art='
       /_/                                       '
 
 clear
+echo "project"
 echo -e "\n$ansi_art\n"
 echo By Jack Gearhart
 #inspierd by omarchy
-#this uses a lightly edited verson of the zsh install to make the code run smother line: 24
+#this uses a lightly edited verson of the zsh install to make the code run smother line: 38
 
 #asks if you would like to continue
-read -p "do you want to install? (Y/n):" choice
-choice=${choice:-Y}
+echo "select anb install option"
+echo "1) install" 
+echo "2) update"
+echo "3) remove"
+echo "4) exit"
+read -p "chose a opition. 1 is default [1-4]: " choice
+choice=${choice:-1}
 
+case $choice in
+
+1)
+echo "installing"
 
 #install all needed things
 sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig
 cd; git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si; cd
 yay -S walker-bin elephant-bin 
-#
+
 sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/zsh_install.sh)" ;\ 
  git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ;\
  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ;\ 
  git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k 
 
-cd ; cd .local/bin  ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env ; cd
+cd .local/bin ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env 
+\; cd
 
 #makes config file for zsh and pk10
  rm -rf .zshrc
@@ -65,7 +76,7 @@ wget https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f5
 mkdir themes && cd themes && mkdir my-themes && cd my-themes 
 wget https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml \
  https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css
-cd && cd .config
+cd ; cd .config
 
 #edit the pacman.conf
 cd /etc
@@ -86,3 +97,23 @@ sudo systemctl disable sddm.service
 sudo systemctl enable ly@tty2.service 
 
 echo install complete
+;;
+2)
+echo "updating"
+#code go here
+;;
+
+3)
+echo "removeing"
+#code go here
+;;
+
+4)
+echo "Exiting script."
+exit 0
+;;
+
+*)
+echo "Invalid option. Please pick 1, 2, 3, or 4."
+;;
+esac
