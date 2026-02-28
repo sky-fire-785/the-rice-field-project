@@ -1,5 +1,5 @@
 #!/bin/bash
-#you can install the sofwere useing wget ( sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/zsh_install.sh)" )
+#you can install the sofwere useing wget ( sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh)" )
 #you can install the sofwere useing curl (place holder)
 #you can install the sofwere useing place holder (place holder)
 #this project is made for arch linux kde plasma 
@@ -85,8 +85,8 @@ sudo wget https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/
 cd
 
 #makes a new kde theme
-cd .local/share/plasma/look-and-feel
-mkdir -p skys/contents/layouts ; cd skys
+cd .local/share
+mkdir -p /plasma/look-and-feel/skys/contents/layouts ; cd plasma/look-and-feel/skys
 wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json
 cd contents ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults
 cd layouts ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js
