@@ -1,7 +1,11 @@
 #!/bin/bash
-#you can install the sofwere useing wget ( sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh)" )
-#you can install the sofwere useing curl (place holder)
-#you can install the sofwere useing place holder (place holder)
+#you can install via wget: 
+#    sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh)"
+#or via curl:
+#    sh -c "$(curl -fsSL https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh"
+#or via fetch:  
+#    sh -c "$(fetch -o - https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh)"
+#
 #this project is made for arch linux kde plasma 
 #remove all ## for full functionality
 
@@ -35,9 +39,9 @@ case $choice in
 echo "installing..."
 
 #install all needed things
-sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig
+sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig --noconferm
 cd; git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si; cd
-yay -S walker-bin elephant-bin 
+yay -S walker-bin elephant-bin --noconfirm
 #install vscode needed to do
 
 sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/zsh_install.sh)" ;\ 
