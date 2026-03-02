@@ -32,18 +32,20 @@ choice=${choice:-1}
 case $choice in
 
 1)
-echo "installing"
+echo "installing..."
 
 #install all needed things
 sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig
 cd; git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si; cd
 yay -S walker-bin elephant-bin 
+#install vscode needed to do
 
 sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/zsh_install.sh)" ;\ 
  git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ;\
  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ;\ 
  git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k 
 
+#fix this
 cd .local/bin ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env 
 \; cd
 
@@ -96,20 +98,22 @@ cd
 sudo systemctl disable sddm.service
 sudo systemctl enable ly@tty2.service 
 
-echo install complete
+echo "Install Complete"
 ;;
 2)
-echo "updating"
+echo "Updating..."
+echo "This needs to be built"
 #code go here
 ;;
 
 3)
-echo "removeing"
+echo "Removeing..."
+echo "This needs to be built"
 #code go here
 ;;
 
 4)
-echo "Exiting script."
+echo "Exiting script..."
 exit 0
 ;;
 
