@@ -99,8 +99,8 @@ sudo wget pacman.conf https://raw.githubusercontent.com/sky-fire-785/project-aph
 cd ~/.local/share
 sudo mkdir -p plasma/look-and-feel/skys/contents/layouts ; cd plasma/look-and-feel/skys
 sudo wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json
-sudo cd contents ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults
-sudo cd layouts ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js
+cd contents ; sudo wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults
+cd layouts ; sudo wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js
 
 #sets defalts 
 sudo systemctl disable sddm.service
