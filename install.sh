@@ -119,8 +119,8 @@ curl --progress-bar -L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercont
 
 #updates fastfetch
 cd ~/.config/fastfetch
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/fastfetch/arch.txt https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/fastfetch/config.jsonc https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt
+curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config.jsonc https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc
 
 ##brake #this means this is the end of the line of code
 ;;
