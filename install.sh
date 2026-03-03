@@ -116,41 +116,51 @@ echo "This is not fully built"
 cd ~
 
 #updates the system
+echo "updateing the system"
 sudo pacman -Syu --noconfirm
 
 #updates zsh and pk10
+echo "updating zsh & pk10..."
 curl --progress-bar -L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc"
 curl --progress-bar -L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh"
 
 #updates fastfetch
-cd ~/.config/fastfetch
+echo "updating fastfetch..."
 curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt"
 curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc"
 
 #updates kitty
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+echo "updating kitty..."
+curl --progress-bar -L -z ~/.config.kitty/kitty.conf -o ~/.config/kitty/kitty.conf ""
+curl --progress-bar -L -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.conf ""
 
 #updates walker
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+echo "updating walker..."
+curl --progress-bar -L -z ~/.config/walker/place holder -o ~/.config/walker/place holder "URL go here"
+curl --progress-bar -L -z ~/.config/walker/place holder -o ~/.config/walker/place holder "URL go here"
+curl --progress-bar -L -z ~/.config/walker/place holder -o ~/.config/walker/place holder "URL go here"
 
 #updates pacman
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+echo "updating pacman..."
+sudo curl --progress-bar -L -z /etc/pacman.conf -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf"
 
 #updates KDE config
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+echo " updating the KDE configuration..."
+curl --progress-bar -L -z ~/.local/share/plasma/look-and-feel/skys/metadata.json -o ~/.local/share/plasma/look-and-feel/skys/metadata.json ""
+curl --progress-bar -L -z ~/.local/share/plasma/look-and-feel/skys/contents/defaults -o ~/.local/share/plasma/look-and-feel/skys/contents/defaults ""
+curl --progress-bar -L -z ~/.local/share/plasma/look-and-feel/skys/contents/layout/org.kde.plasma.desktop-layout.js -o ~/.local/share/plasma/look-and-feel/skys/contents/layout/org.kde.plasma.desktop-layout.js ""
 
-##brake #this means this is the end of the line of code
+brake #this means this is the end of the line of code
 ;;
 
 3)
-echo "Removeing..."
+echo "Removeing Project-Aphrodite..."
 echo "This needs to be built"
-#code go here 
+
+sudo pacman -Rs vivaldi
+
+
+
 ##brake #this means this is the end of the line of code
 ;;
 
