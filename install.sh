@@ -22,12 +22,13 @@ ansi_art='
       /_/                                       '
 
 clear
-echo -e "\n$ansi_art\n"
-echo By Jack Gearhart
-#inspierd by omarchy
 
 #starts the loop
 while true; do
+
+echo -e "\n$ansi_art\n"
+echo By Jack Gearhart
+#inspierd by omarchy
 
 #asks if you would like to continue
 echo "select an install option"
@@ -109,18 +110,29 @@ echo "Install Complete"
 ;;
 2)
 echo "Updating..."
-echo "This needs to be built"
+echo "Tis is not fully built"
 
-##sudo pacman -Syu --noconfirm
+#this enters the home folder so the script can run proprly
+cd ~
 
-#updates zsh
+#updates the system
+sudo pacman -Syu --noconfirm
+
+#updates zsh and pk10
 curl --progress-bar -L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc"
 curl --progress-bar -L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh"
 
 #updates fastfetch
 cd ~/.config/fastfetch
-curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt
-curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config.jsonc https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt"
+curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config."jsonc https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc"
+
+#updates kitty
+
+
+#updates walker
+
+#
 
 ##brake #this means this is the end of the line of code
 ;;
@@ -139,6 +151,7 @@ exit 0
 ;;
 
 *)
+clear
 echo "Invalid option. Please pick 1, 2, 3, or 4."
 ;; #do not put a brake here
 esac
