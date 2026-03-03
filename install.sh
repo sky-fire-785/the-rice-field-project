@@ -48,9 +48,9 @@ echo "installing..."
 echo "Updating system & installing essential tools..."
 sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm
 cd; git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si ; cd
-yay -S walker-bin elephant-bin --noconfirm
-#install vscode needed to do
+yay -S walker-bin elephant-bin visual-studio-code-bin --noconfirm
 
+#install zsh & pk10 with some plugins
 RUNZSH=no sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ;\ 
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ;\
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ;\ 
@@ -61,8 +61,8 @@ cd ~/.local/bin ; wget https://raw.githubusercontent.com/sky-fire-785/Project-Ap
 
 #makes config file for zsh and pk10
 mv .zshrc .zshrc_384
-wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc \
- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh 
+wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc"
+wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh"
 
 #enter the config derectory
 cd ~/.config
@@ -70,37 +70,37 @@ cd ~/.config
 #kitty config
 mkdir kitty
 cd kitty
-wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf \
- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf
+wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf"
+wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf"
 cd ~/.config
 
 #makes a fastfetch derectory
 mkdir fastfetch
 cd fastfetch
-wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt\
- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc
+wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt"
+wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc"
 cd ~/.config
 
 #make the walker derectory
 mkdir walker
 cd walker
-wget https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/config.toml
+wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/config.toml"
 mkdir -P themes/my-themes ; cd my-themes 
-wget https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml \
- https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css
+wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml"
+wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css"
 cd ~/.config
 
 #edit the pacman.conf
 cd /etc
-sudo mv pacman.conf .old_pacman.conf #need to make better
-sudo wget pacman.conf https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf
+sudo mv pacman.conf .old_pacman.conf
+sudo wget pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf"
 
 #makes a new kde theme
 cd ~/.local/share
 sudo mkdir -p plasma/look-and-feel/skys/contents/layouts ; cd plasma/look-and-feel/skys
-sudo wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json
-cd contents ; sudo wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults
-cd layouts ; sudo wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js
+sudo wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json"
+cd contents ; sudo wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults"
+cd layouts ; sudo wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js"
 
 #sets defalts 
 sudo systemctl disable sddm.service
@@ -110,7 +110,7 @@ echo "Install Complete"
 ;;
 2)
 echo "Updating..."
-echo "Tis is not fully built"
+echo "This is not fully built"
 
 #this enters the home folder so the script can run proprly
 cd ~
@@ -125,14 +125,24 @@ curl --progress-bar -L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercont
 #updates fastfetch
 cd ~/.config/fastfetch
 curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt"
-curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config."jsonc https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc"
+curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc"
 
 #updates kitty
-
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
 
 #updates walker
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
 
-#
+#updates pacman
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+
+#updates KDE config
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
+curl --progress-bar -L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt
 
 ##brake #this means this is the end of the line of code
 ;;
