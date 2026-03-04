@@ -112,18 +112,16 @@ sudo systemctl enable ly@tty2.service
 echo "Install Complete"
 brake
 ;;
-
 2)
 echo "Updating..."
-echo "This is not fully built"
 
 #this enters the home folder so the script can run proprly
 cd ~
 
 #updates the system
 echo "updateing the system"
-sudo pacman -Syu --noconfirm
-
+sudo pacman -Syu git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm
+yay -S visual-studio-code-bin --noconfirm
 #updates zsh and pk10
 echo "updating zsh & pk10..."
 curl --progress-bar -L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc"
@@ -157,7 +155,6 @@ curl --progress-bar -L -z ~/.local/share/plasma/look-and-feel/skys/contents/layo
 
 brake #this means this is the end of the line of code
 ;;
-
 3)
 echo "Removeing Project-Aphrodite..."
 echo "This needs to be built"
@@ -170,7 +167,6 @@ yay -Rs visual-studio-code-bin --
 
 brake #this means this is the end of the line of code
 ;;
-
 4)
 echo "Exiting script..."
 exit 0
