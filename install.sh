@@ -91,7 +91,7 @@ cd ~/.config
 ##cd ~/.config
 
 #adds files to the start list
-##if grep -q ""
+if grep -q ""
 
 #edit the pacman.conf
 cd /etc
