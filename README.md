@@ -3,8 +3,9 @@ this is a project for my riceing of arch linux i will be useing this as a downlo
 
 # installing the configs
 use the install script at:
-```bash
-sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh)"
+ ```bash
+ sh -c "$(wget -qO- https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh)"
+```
 
 or you can ge the file and run it that way by:
     wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/install.sh

@@ -82,13 +82,16 @@ wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/head
 cd ~/.config
 
 #make the walker derectory
-mkdir walker
-cd walker
-wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/config.toml"
-mkdir -P themes/my-themes ; cd my-themes 
-wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml"
-wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css"
-cd ~/.config
+##mkdir walker
+##cd walker
+##wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/config.toml"
+##mkdir -P themes/my-themes ; cd my-themes 
+##wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml"
+##wget "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css"
+##cd ~/.config
+
+#adds files to the start list
+##if grep -q ""
 
 #edit the pacman.conf
 cd /etc
@@ -108,6 +111,7 @@ sudo systemctl enable ly@tty2.service
 
 echo "Install Complete"
 ;;
+
 2)
 echo "Updating..."
 echo "This is not fully built"
@@ -131,14 +135,14 @@ curl --progress-bar -L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetc
 
 #updates kitty
 echo "updating kitty..."
-curl --progress-bar -L -z ~/.config.kitty/kitty.conf -o ~/.config/kitty/kitty.conf ""
-curl --progress-bar -L -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.conf ""
+curl --progress-bar -L -z ~/.config/kitty/kitty.conf -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf"
+curl --progress-bar -L -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf"
 
 #updates walker
 echo "updating walker..."
-curl --progress-bar -L -z ~/.config/walker/place holder -o ~/.config/walker/place holder "URL go here"
-curl --progress-bar -L -z ~/.config/walker/place holder -o ~/.config/walker/place holder "URL go here"
-curl --progress-bar -L -z ~/.config/walker/place holder -o ~/.config/walker/place holder "URL go here"
+curl --progress-bar -L -z ~/.config/walker/themes/config.toml -o ~/.config/walker/themes/config.toml "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/config.toml"
+curl --progress-bar -L -z ~/.config/walker/themes/my-theme -o ~/.config/walker/themes/my-theme/layout.xml "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml"
+curl --progress-bar -L -z ~/.config/walker/themes/my-theme -o ~/.config/walker/themes/my-theme/style.css "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css"
 
 #updates pacman
 echo "updating pacman..."
@@ -157,11 +161,13 @@ brake #this means this is the end of the line of code
 echo "Removeing Project-Aphrodite..."
 echo "This needs to be built"
 
-sudo pacman -Rs vivaldi
+sudo pacman -Syu
+sudo pacman -Rs vivaldi ly fastfetch --noconfirm
+yay -Rs visual-studio-code-bin --
 
 
 
-##brake #this means this is the end of the line of code
+brake #this means this is the end of the line of code
 ;;
 
 4)
