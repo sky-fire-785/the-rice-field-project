@@ -110,6 +110,7 @@ sudo systemctl disable sddm.service
 sudo systemctl enable ly@tty2.service 
 
 echo "Install Complete"
+brake
 ;;
 
 2)
