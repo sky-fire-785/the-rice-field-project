@@ -18,7 +18,7 @@ ansi_art='
    /   | ____  / /_  _________  ____/ (_) /____ 
   / /| |/ __ \/ __ \/ ___/ __ \/ __  / / __/ _ \
  / ___ / /_/ / / / / /  / /_/ / /_/ / / /_/  __/
-/_/  |_\ .___/_/ /_/_/  \____/\__,_/_/\__/\___/ 
+/_/  |_\ .__/_/ /_/_/   \____/\__,_/_/\__/\___/ 
       /_/                                       '
 
 clear
@@ -27,7 +27,7 @@ clear
 while true; do
 
 echo -e "\n$ansi_art\n"
-echo By Jack Gearhart
+echo By sky-fire-785
 #inspierd by omarchy
 
 #asks if you would like to continue
@@ -46,9 +46,9 @@ echo "installing..."
 
 #install all needed things
 echo "Updating system & installing essential tools..."
-sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm
+sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl rofi --noconfirm
 cd; git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si ; cd
-yay -S walker-bin elephant-bin visual-studio-code-bin --noconfirm
+yay -S visual-studio-code-bin --noconfirm
 
 #install zsh & pk10 with some plugins
 RUNZSH=no sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" ;\ 
@@ -91,7 +91,7 @@ cd ~/.config
 ##cd ~/.config
 
 #adds files to the start list
-if grep -q ""
+##if grep -q ""
 
 #edit the pacman.conf
 cd /etc
@@ -155,6 +155,7 @@ curl --progress-bar -L -z ~/.local/share/plasma/look-and-feel/skys/contents/layo
 
 brake #this means this is the end of the line of code
 ;;
+
 3)
 echo "Removeing Project-Aphrodite..."
 echo "This needs to be built"
@@ -167,6 +168,7 @@ yay -Rs visual-studio-code-bin --
 
 brake #this means this is the end of the line of code
 ;;
+
 4)
 echo "Exiting script..."
 exit 0
