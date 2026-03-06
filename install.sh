@@ -13,10 +13,10 @@
 #remove all ## for full functionality
 
 #sets some varables
-RED='\e[31m'
-GREEN='\e[32m'
-YELLOW='\e[33m'
-NC='\e[0m'
+RED='\033[38;2;255;0;0m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+NC='\033[0m'
 
 ansi_art='    
     project
@@ -62,7 +62,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || echo -e "${RED}WARNING: Install Failed${NC}"
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k || echo -e "${RED}WARNING: Install Failed${NC}"
 
-#fix this
+#buileds env
 mkdir -p ~/.local/bin
 cd ~/.local/bin
 wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env || echo -e "${RED}WARNING: Install Failed${NC}"
@@ -93,13 +93,13 @@ cd ~/.config
 #configures rofi
 mkdir -p ~/.config/rofi
 cd ~/.config/rofi
-curl -o "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/config.rasi"
+curl -o "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/config.rasi" || echo -e "${RED}WARNING: Install Failed${NC}"
 cd
 
 #configures shortcuts
 #makes the applcation
 mkdir -p ~/.local/share/applications
-curl -o ~/.local/share/applications/net.local.rofi.desktop ""
+curl -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.konsole.desktop" --key "_launch" "none"
@@ -138,8 +138,8 @@ cd ~
 
 #updates the system
 echo "updateing the system"
-sudo pacman -Syu git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
-yay -S visual-studio-code-bin --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
+sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
+yay -S --needed visual-studio-code-bin --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
 #updates zsh and pk10
 echo "updating zsh & pk10..."
 curl -L# -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" || echo -e "${RED}WARNING: Update Failed${NC}"
@@ -172,19 +172,56 @@ curl -L# -z ~/.local/share/plasma/look-and-feel/skys/contents/defaults -o ~/.loc
 curl -L# -z ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js -o ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING: Update Failed${NC}"
 
 #updates KDE shortcuts
-
+kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.konsole.desktop" --key "_launch" "none"
+kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krunner.desktop" --key "_launch" "none"
+kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krunner.desktop" --key "RunClipboard" "none"
+kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "kitty.desktop" --key "_launch" "Ctrl+Shift+T"
+kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.rofi.desktop" --key "_launch" "Meta+Space"$'\t'"Alt+Space"
+qdbus6 org.kde.KWin /KWin reconfigure
 
 echo -e "${GREEN}SUCCESSFULLY UPDATED!${NC}"
 break #this means this is the end of the line of code
 ;;
 
 3)
-echo "Removeing Project-Aphrodite..."
-echo "This needs to be built"
+while true; do
+echo "Removeing Project-Aphrodite from your system..."
 
+read -p "are you useing Konsole? [Y/n]: " choice2
+choice2=${choice2:-y}
+
+case $choice2 in
+    [Yy]* ) 
+        echo -e "${GREEN}Removeing Project-Aphrodite...${NC}"
+        # Put your flatpak install commands here!
+        break
+        ;;
+
+    [Nn]* ) 
+        echo -e "${RED}Please use konsole to remove Project-Aphodite.${NC}"
+
+        exit
+        break
+        ;;
+
+    * ) 
+        echo -e "${RED}Invalid input. Please type yes or no.${NC}"
+        clear
+        echo -e "${RED}Invalid option.${NC}"
+        ;;
+esac
+done
+##sudo pacman -Rs ly fastfetch kitty rofi --noconfirm
+##yay -Rs visual-studio-code-bin --noconfirm
 sudo pacman -Syu
-sudo pacman -Rs vivaldi ly fastfetch --noconfirm
-yay -Rs visual-studio-code-bin --noconfirm
+
+#
+
+#
+
+#
+
+#
 
 
 echo -e "${GREEN}SUCCESSFULLY REMOVED!${NC}"
