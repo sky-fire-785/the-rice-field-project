@@ -20,11 +20,11 @@ NC='\033[0m'
 
 ansi_art='    
     project
-    ___         __                    ___ __      
-   /   | ____  / /_  _________  ____/ (_) /____ 
-  / /| |/ __ \/ __ \/ ___/ __ \/ __  / / __/ _ \
- / ___ / /_/ / / / / /  / /_/ / /_/ / / /_/  __/
-/_/  |_\ .__/_/ /_/_/   \____/\__,_/_/\__/\___/ 
+    ___          __                   __  __      
+   /   |  ____  / /_  _________  ____/ (_) /____ 
+  / /| | / __ \/ __ \/ ___/ __ \/ __  / / __/ _ \
+ / ___ |/ /_/ / / / / /  / /_/ / /_/ / / / /  __/
+/_/  | / ,___/_/ /_/_/   \____/\____/_/\__/\___/ 
       /_/                                       '
 
 clear
@@ -62,14 +62,14 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || echo -e "${RED}WARNING: Install Failed${NC}"
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k || echo -e "${RED}WARNING: Install Failed${NC}"
 
-#buileds env
+#builds env
 mkdir -p ~/.local/bin
 cd ~/.local/bin
 wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #makes config file for zsh and pk10
 cd ~
-mv .zshrc .zshrc_384
+rm -rf zshrc
 wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" || echo -e "${RED}WARNING: Install Failed${NC}"
 wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: Install Failed${NC}"
 
@@ -155,12 +155,6 @@ echo "updating kitty..."
 curl -L# -z ~/.config/kitty/kitty.conf -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" || echo -e "${RED}WARNING: Update Failed${NC}"
 curl -L# -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf" || echo -e "${RED}WARNING: Update Failed${NC}"
 
-#updates walker
-##echo "updating walker..."
-##curl -L# -z ~/.config/walker/themes/config.toml -o ~/.config/walker/themes/config.toml "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/config.toml" || echo -e "${RED}WARNING: Update Failed${NC}"
-##curl -L# -z ~/.config/walker/themes/my-theme/layout.xml -o ~/.config/walker/themes/my-theme/layout.xml "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/layout.xml" || echo -e "${RED}WARNING: Update Failed${NC}"
-##curl -L# -z ~/.config/walker/themes/my-theme/style.css -o ~/.config/walker/themes/my-theme/style.css "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/6d714d75f519e17ecceb1d9659e42b94ac767dbc/walker/themes/my-theme/style.css" || echo -e "${RED}WARNING: Update Failed${NC}"
- 
 #updates pacman
 echo "updating pacman..."
 sudo curl -L# -z /etc/pacman.conf -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf" || echo -e "${RED}WARNING: Update Failed${NC}"
@@ -184,54 +178,38 @@ break #this means this is the end of the line of code
 ;;
 
 3)
-while true; do
-echo "Removeing Project-Aphrodite from your system..."
 
-read -p "are you useing Konsole? [Y/n]: " choice2
-choice2=${choice2:-y}
+#changes the shell so i can remove zsh without confilict
+chsh -s /bin/bash
 
-case $choice2 in
-    [Yy]* ) 
-        echo -e "${GREEN}Removeing Project-Aphrodite...${NC}"
-        # Put your flatpak install commands here!
-        break
-        ;;
+#removes kitty configs
+rm -rf ~/.config/kitty
+#removes fastfetch config
+rm -rf ~/.config/fastfetch
+#removes zsh
+rm -rf ~/.oh-my-zsh
+rm -rf ~/.zshrc ~/.p10k.zsh ~/.zcompdump*
+#removes rofi config
+rm -rf ~/.config/rofi
+rm -f ~/.local/share/applications/rofi-drun.desktop
+#removes pacman config
+sudo mv /etc/.old_pacman.conf /etc/pacman.conf || echo "${RED}there is no old pacman file to build from${NC}"
 
-    [Nn]* ) 
-        echo -e "${RED}Please use konsole to remove Project-Aphodite.${NC}"
+#resets the KDE shortcuts to defalts
+rm -f ~/.config/kglobalshortcutsrc
 
-        exit
-        break
-        ;;
+#updates the system
+sudo pacman -Syu --noconfirm
+sudo pacman -Rs ly fastfetch kitty rofi zsh --noconfirm
+yay -Rs visual-studio-code-bin --noconfirm
 
-    * ) 
-        echo -e "${RED}Invalid input. Please type yes or no.${NC}"
-        clear
-        echo -e "${RED}Invalid option.${NC}"
-        ;;
-esac
-done
-##sudo pacman -Rs ly fastfetch kitty rofi --noconfirm
-##yay -Rs visual-studio-code-bin --noconfirm
-sudo pacman -Syu
-
-#
-
-#
-
-#
-
-#
-
-
-echo -e "${GREEN}SUCCESSFULLY REMOVED!${NC}"
+echo -e "${GREEN}Successfully Removed Project-Aphrdite!${NC}"
 break #this means this is the end of the line of code
 ;;
 
 4)
 echo "Exiting script..."
 exit 0
-##brake #this means this is the end of the line of code
 ;;
 
 *)
