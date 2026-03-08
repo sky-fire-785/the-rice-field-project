@@ -48,12 +48,13 @@ choice=${choice:-1}
 case $choice in
 
 1)
+                                    #installer
 echo "installing..."
 
 #install all needed things
 echo "Updating system & installing essential tools..."
 sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl rofi --noconfirm || echo -e "${RED}WARNING: Install Failed${NC}"
-cd; git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si ; cd || echo -e "${RED}WARNING: Install Failed${NC}"
+cd; git clone https://aur.archlinux.org/yay.git ; cd yay ; makepkg -si ; cd || echo -e "${RED}WARNING: Install Failed${NC}"
 yay -S visual-studio-code-bin --noconfirm || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #install zsh & pk10 with some plugins
@@ -64,42 +65,31 @@ git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zs
 
 #builds env
 mkdir -p ~/.local/bin
-cd ~/.local/bin
-wget https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -o ~/.local/bin/env "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/env" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #makes config file for zsh and pk10
-cd ~
-rm -rf zshrc
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" || echo -e "${RED}WARNING: Install Failed${NC}"
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: Install Failed${NC}"
-
-#enter the config derectory
-cd ~/.config
+rm -rf ~/.zshrc
+curl -L# -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -L# -o ~/.pk10.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #kitty config
-mkdir -p kitty
-cd kitty
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
-cd ~/.config
+mkdir -p ~/.config/kitty
+curl -L# -o ~/.config/kitty/current-theme.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -L# -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #makes a fastfetch derectory
-mkdir -p fastfetch
-cd fastfetch
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt" || echo -e "${RED}WARNING: Install Failed${NC}"
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc" || echo -e "${RED}WARNING: Install Failed${NC}"
-cd ~/.config
+mkdir -p ~/.config/fastfetch
+curl -L# -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt" || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -L# -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #configures rofi
 mkdir -p ~/.config/rofi
-cd ~/.config/rofi
-curl -o "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/config.rasi" || echo -e "${RED}WARNING: Install Failed${NC}"
-cd
+curl -L# -o ~/.config/rofi/config.rasi "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/config.rasi" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #configures shortcuts
 #makes the applcation
 mkdir -p ~/.local/share/applications
-curl -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -L# -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.konsole.desktop" --key "_launch" "none"
@@ -110,34 +100,38 @@ kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.ro
 qdbus6 org.kde.KWin /KWin reconfigure
 
 #edit the pacman.conf
-cd /etc
-sudo mv pacman.conf .old_pacman.conf
-sudo wget -O pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
+sudo mv /etc/pacman.conf /etc/.old_pacman.conf
+sudo curl -L# -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #makes a new kde theme
-cd ~/.local/share
-mkdir -p plasma/look-and-feel/skys/contents/layouts ; cd plasma/look-and-feel/skys
-wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING: Install Failed${NC}"
-cd contents ; wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults" || echo -e "${RED}WARNING: Install Failed${NC}"
-cd layouts ; wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING: Install Failed${NC}"
+mkdir -p ~/.local/share/plasma/look-and-feel/skys/contents/layouts
+curl -L# -o ~/.local/share/plasma/look-and-feel/skys/metadata.json "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -L# -o ~/.local/share/plasma/look-and-feel/skys/contents/defaults "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults" || echo -e "${RED}WARNING: Install Failed${NC}"
+curl -L# -o ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING: Install Failed${NC}"
+
+#sets ly's configs
+sudo sed -i 's/^[# \t]*asterisk.*/asterisk = 0x2022/' /etc/ly/config.ini
+sudo sed -i 's/^[# \t]*numlock.*/numlock = true/' /etc/ly/config.ini
+sudo sed -i 's/^[# \t]*save.*/save = true/' /etc/ly/config.ini
 
 #sets defalts 
 sudo systemctl disable sddm.service
-sudo systemctl enable ly@tty2.service 
-  
+sudo systemctl enable ly@tty2.service -f
+
 
 echo -e "${GREEN}SUCCESSFULLY DOWNLOADED!${NC}"
 break
 ;;
 
 2)
+                                                      #updater
 echo "Updating..."
 
 #this enters the home folder so the script can run proprly
 cd ~
 
 #updates the system
-echo "updateing the system"
+echo "updateing the system..."
 sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
 yay -S --needed visual-studio-code-bin --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
 #updates zsh and pk10
@@ -159,6 +153,12 @@ curl -L# -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.
 echo "updating pacman..."
 sudo curl -L# -z /etc/pacman.conf -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf" || echo -e "${RED}WARNING: Update Failed${NC}"
 
+#updates ly config
+echo "updateing ly config..."
+sudo sed -i 's/^[# \t]*asterisk.*/asterisk = 0x2022/' /etc/ly/config.ini
+sudo sed -i 's/^[# \t]*numlock.*/numlock = true/' /etc/ly/config.ini
+sudo sed -i 's/^[# \t]*save.*/save = true/' /etc/ly/config.ini
+
 #updates KDE config
 echo " updating the KDE configuration..."
 curl -L# -z ~/.local/share/plasma/look-and-feel/skys/metadata.json -o ~/.local/share/plasma/look-and-feel/skys/metadata.json "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING: Update Failed${NC}"
@@ -178,7 +178,7 @@ break #this means this is the end of the line of code
 ;;
 
 3)
-
+                                                                  #remover
 #changes the shell so i can remove zsh without confilict
 chsh -s /bin/bash
 
@@ -194,7 +194,10 @@ rm -rf ~/.config/rofi
 rm -f ~/.local/share/applications/rofi-drun.desktop
 #removes pacman config
 sudo mv /etc/.old_pacman.conf /etc/pacman.conf || echo "${RED}there is no old pacman file to build from${NC}"
-
+#removes ly
+sudo rm -rf /etc/ly
+sudo systemctl disable ly@tty2.service
+sudo systemctl enable sddm.service 
 #resets the KDE shortcuts to defalts
 rm -f ~/.config/kglobalshortcutsrc
 
