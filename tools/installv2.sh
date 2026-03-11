@@ -1,13 +1,13 @@
 #!/bin/bash
 #you can install via wget: 
-#    sh -c "$(wget -qO- )"
+#    sh -c "$(wget -qO- "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/tools/installv2.sh")"
 #or via curl:
-#    sh -c "$(curl -fsSL )"
+#    sh -c "$(curl -fsSL "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/tools/installv2.sh")"
 #or via fetch:  
-#    sh -c "$(fetch -o - )"
+#    sh -c "$(fetch -o - "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/tools/installv2.sh")"
 #
 # You can install the sorce code by runing: 
-# wget  ; sh install.sh
+# wget "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/tools/installv2.sh" ; sh install.sh
 #
 #this project is made for arch linux KDE plasma
 
@@ -39,8 +39,8 @@ echo By sky-fire-785
 echo "Select an install option"
 echo "1) Install" 
 echo "2) Update/Fix"
-echo "4) Remove"
-echo "5) Exit"
+echo "3) Remove"
+echo "4) Exit"
 read -p "chose a opition. 1 is default [1-4]: " choice
 choice=${choice:-1}
 
