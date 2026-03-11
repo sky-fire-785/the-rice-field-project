@@ -1,0 +1,23 @@
+[kdeglobals][General]
+ColorScheme=BreezeDark
+Name= Project-Aphrodite
+AccentColor=170,0,0
+UseSystemAccentColor=false
+
+[ksplashrc][KSplash]
+Engine=KSplashQML
+Theme= Project-Aphrodite
+
+[kdeglobals][Icons]
+Theme=breeze-dark
+
+[kwinrc][org.kde.kdecoration2]
+theme=__aurorae__plastic-theme-name
+
+[kcminputrc][Mouse]
+cursorTheme=Project-Aphrodite-Cursor
+cursorSize=24
+
+[kwinrc][org.kde.kdecoration2]
+theme=org.kde.plastik
+

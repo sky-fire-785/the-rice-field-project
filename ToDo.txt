@@ -1,0 +1,13 @@
+this the Project-Aphrodite ToDo list AKA all of the stuff that i will be working on in the future.
+
+
+Finish KDE THEME
+1. wall paper:      ~/.local/share/wallpapers
+2. main color:      ~/.local/share/plasma/look-and-feel/Project-Aphrodite
+3. icons:           ~/.local/share/icons/Project-Aphrodite
+4. splash screen:   ~/.local/share/plasma/look-and-feel/Project-Aphrodite/contemts/spash
+5. cursor packs:    ~/.icons/Project-Aphrodite-Cursor
+6. plasma style:    ~/.local/share/plasma/look-and-feel/Project-Aphrodite/contemts/defaults
+7. app style:       ~/
+8. start bar:       ~/.local/share/plasma/look-and-feel/Project-Aphrodite/contents/layouts/org.kde.plasma.desktop-layout.js
+
