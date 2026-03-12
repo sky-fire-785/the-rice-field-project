@@ -51,7 +51,7 @@ sh -c "$(curl -fsSL "https://raw.githubusercontent.com/sky-fire-785/Project-Aphr
 
 echo -e "\n$ansi_art\n"
 echo -e "${GREEN}SUCCESSFULLY DOWNLOADED!${NC}"
-break
+break #this means this is the end of the line of code
 ;;
 
 2)
@@ -82,21 +82,24 @@ echo -e "${YELLOW}Invalid option. Please pick 1, 2, 3, or 4.${NC}"
 esac
 done
 
+while true; do
 echo -e "${YELLOW}reboot needed for full functionality.${NC}"
 read -p "Would you like to reboot? [Y/n]:"
 
 case "$choice" in 
   [Yy]* | "" ) 
-    # This triggers if they type Y, y, Yes, yes, OR if they just hit Enter (the "")
-    echo "Awesome. Downloading the config..."
-    # Put your curl or pacman commands here
+    echo "rebooting now"
+    sudo reboot now
+    brake
     ;;
   [Nn]* ) 
     # This triggers if they type N, n, No, or no
-    echo "Skipping the Zsh config."
+    exit 0
     ;;
   * ) 
     # This triggers if they mash random keys on the keyboard
-    echo "Invalid input. Skipping just to be safe."
+    clear
+    echo "please pick [Y/n]"
     ;;
 esac
+done
