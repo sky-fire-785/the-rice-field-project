@@ -128,5 +128,5 @@ kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "kitty.deskto
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.rofi.desktop" --key "_launch" "Meta+Space"$'\t'"Alt+Space"
 
 #updates ly in ram
-sudo systemctl enable ly@tty2.service -f
+sudo systemctl enable -f ly@tty2.service
 qdbus6 org.kde.KWin /KWin reconfigure
