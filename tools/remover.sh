@@ -20,7 +20,7 @@ rm -rf ~/.zshrc ~/.p10k.zsh ~/.zcompdump*
 
 #removes rofi config
 rm -rf ~/.config/rofi
-rm -f ~/.local/share/applications/rofi-drun.desktop
+rm -rf ~/.local/share/applications/rofi-drun.desktop
 
 #removes pacman config
 sudo mv /etc/.old_pacman.conf /etc/pacman.conf || echo "${RED}there is no old pacman file to build from${NC}"

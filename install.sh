@@ -127,59 +127,131 @@ case $choice in
 
 2)
                                                        #updater
-      echo "Updating..."
-
+      echo "Updating Project-Aphrodite..."
+      
       #this enters the home folder so the script can run proprly
       cd ~
-
+      
       #updates the system
       echo "updateing the system..."
-      sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
-      yay -S --needed visual-studio-code-bin --noconfirm || echo -e "${RED}WARNING: Update Failed${NC}"
+      
+      if ! sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-noto-nerd base-devel vivaldi zig curl rofi rofi-calc --noconfirm ;then
+      echo "${RED}WARNING: Failed to update. Check your WiFi. Exiting script...${NC}"
+      exit 1
+      fi
+      yay -S --needed visual-studio-code-bin --noconfirm || { echo -e "${RED}WARNING: Update Failed${NC}"; exit 1; }
       
       #updates zsh and pk10
       echo "updating zsh & pk10..."
-      curl -#L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" || echo -e "${RED}WARNING: Update Failed${NC}"
-      curl -#L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: Update Failed${NC}"
-
+      if ! curl -#L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" ;then
+      
+      echo -e "${RED}WARNING: Update Failed for .zshrc${NC}"
+      echo -e "${YELLOW}Trying to fix zsh...${NC}" 
+      
+      sudo rm -rf ~/.zshrc
+      
+      RUNZSH=no sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || echo -e "${RED}WARNING:ZSH Install Failed${NC}"
+      git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || echo -e "${RED}WARNING: Plugin Install Failed${NC}"
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || echo -e "${RED}WARNING: Plugin Install Failed${NC}"
+      git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k || echo -e "${RED}WARNING: Theme Install Failed${NC}"
+      
+      curl -#L -o ~/.zshrc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/zsh%20config/.zshrc" || echo -e "${RED}WARNING: .zshrc Install Failed${NC}"
+      curl -#L -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
+      fi
+      if ! curl -#L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" ;then
+      echo -e "${RED}WARNING: Update Failed for .pk10.zsh${NC}"
+      echo -e "${YELLOW}Trying to fix PowerLevel10k...${NC}"
+      
+      sudo rm-rf ~/.pk10.zsh
+      curl -#L -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
+      fi
+      
+      
       #updates fastfetch
       echo "updating fastfetch..."
-      curl -#L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt" || echo -e "${RED}WARNING: Update Failed${NC}"
-      curl -#L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc" || echo -e "${RED}WARNING:FastFetch's config.jsonc Failed${NC}"
-
+      if ! curl -#L -z ~/.config/fastfetch/arch.txt -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt" ;then
+      echo -e "${RED}WARNING: Update Failed for arch.txt${NC}"
+      echo -e "${YELLOW}Trying to fix FastFetch...${NC}"
+      
+      sudo rm -rf ~/.config/fastfetch
+      mkdir -p ~/.config/fastfetch
+      curl -#L -o ~/.config/fastfetch/arch.txt "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/arch.txt" || echo -e "${RED}WARNING: arch.txt Install Failed${NC}"
+      curl -#L -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc" || echo -e "${RED}WARNING: config.jsonc Install Failed${NC}"
+      fi
+      
+      if ! curl -#L -z ~/.config/fastfetch/config.jsonc -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc" ;then
+      echo -e "${RED}WARNING: Update Failed for config.jsonc${NC}"
+      echo -e "${YELLOW}Trying to fix FastFetch...${NC}"
+      
+      sudo rm -rf ~/.config/fastfetch/config.jsonc
+      curl -#L -o ~/.config/fastfetch/config.jsonc "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/FastFetch/config.jsonc" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
+      fi
+      
       #updates kitty
       echo "updating kitty..."
-      curl -#L -z ~/.config/kitty/kitty.conf -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" || echo -e "${RED}WARNING:kitty's kitty.conf Update Failed${NC}"
-      curl -#L -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf" || echo -e "${RED}WARNING:Kitty's current-theme.conf Update Failed${NC}"
-
+      if ! curl -#L -z ~/.config/kitty/current-theme.conf -o ~/.config/kitty/current-theme.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf" ;then
+      echo -e "${RED}WARNING: Update Failed for config.jsonc${NC}"
+      echo -e "${YELLOW}Trying to fix kitty...${NC}"
+      
+      sudo rm -rf ~/.config/kitty
+      mkdir -p ~/.config/kitty
+      curl -#L -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" || echo -e "${RED}WARNING:kitty's kitty.conf Update Failed${NC}"
+      curl -#L -o ~/.config/kitty/current-theme.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/current-theme.conf" || echo -e "${RED}WARNING:Kitty's current-theme.conf Update Failed${NC}"
+      fi
+      
+      if ! curl -#L -z ~/.config/kitty/kitty.conf -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" ;then
+      echo -e "${RED}WARNING: Update Failed for config.jsonc${NC}"
+      echo -e "${YELLOW}Trying to fix kitty...${NC}"
+      
+      sudo rm -rf ~/.config/kitty/kitty.config
+      curl -#L -o ~/.config/kitty/kitty.conf "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kitty/kitty.conf" || echo -e "${RED}WARNING:kitty's kitty.conf Update Failed${NC}"
+      fi
+      
+      #updates Rofi
+      echo "Updating Rofi" 
+      if ! curl -#L -z ~/.config/rofi/config.rasi -o ~/.config/rofi/config.rasi "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/config.rasi" ;then
+      echo -e "${RED}WARNING: Update Failed for Rofi${NC}"
+      echo -e "${YELLOW}Trying to fix Rofi...${NC}"
+      
+      sudo rm -rf ~/.config/rofi
+      mkdir -p ~/.config/rofi
+      curl -#L -o ~/.config/rofi/config.rasi "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/config.rasi"
+      fi
+      
       #updates pacman
       echo "updating pacman..."
       sudo curl -#L -z /etc/pacman.conf -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf" || echo -e "${RED}WARNING:pacman.conf Update Failed${NC}"
-
+      
       #updates ly config
       echo "updateing ly config..."
       sudo sed -i 's/^[# \t]*asterisk.*/asterisk = 0x2022/' /etc/ly/config.ini
       sudo sed -i 's/^[# \t]*numlock.*/numlock = true/' /etc/ly/config.ini
       sudo sed -i 's/^[# \t]*save.*/save = true/' /etc/ly/config.ini
-
+      
       #updates KDE config
-      echo " updating the KDE configuration..."
-      curl -#L -z ~/.local/share/plasma/look-and-feel/skys/metadata.json -o ~/.local/share/plasma/look-and-feel/skys/metadata.json "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING:KDE's metadata.json Update Failed${NC}"
-      curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/defaults -o ~/.local/share/plasma/look-and-feel/skys/contents/defaults "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults" || echo -e "${RED}WARNING:KDE's defaults Update Failed${NC}"
-      curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js -o ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING:KDE's org.kde.plasma.desktop-layout.js Update Failed${NC}"
+      ##echo " updating the KDE configuration..."
+      ##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/metadata.json -o ~/.local/share/plasma/look-and-feel/skys/metadata.json "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING:KDE's metadata.json Update Failed${NC}"
+      ##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/defaults -o ~/.local/share/plasma/look-and-feel/skys/contents/defaults "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults" || echo -e "${RED}WARNING:KDE's defaults Update Failed${NC}"
+      ##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js -o ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING:KDE's org.kde.plasma.desktop-layout.js Update Failed${NC}"
 
       #updates KDE shortcuts
-      kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.konsole.desktop" --key "_launch" "none"
+      if ! curl -#L -z ~/.local/share/applications/net.local.rofi/desktop -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" ;then
+          echo -e "${RED}WARNING: Update Failed for Rofi keybord shortcuts${NC}"
+          echo -e "${YELLOW}Trying to fix Rofi Shortcuts...${NC}"
+
+          mkdir -p ~/.local/share/applications
+          curl -#L -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" || echo -e "${RED}WARNING:rofi applcation Update Failed${NC}"
+      fi
+      kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.konsole.desktop" --key "_launch" "none"     
       kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krunner.desktop" --key "_launch" "none"
       kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krunner.desktop" --key "RunClipboard" "none"
       kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "kitty.desktop" --key "_launch" "Ctrl+Shift+T"
       kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.rofi.desktop" --key "_launch" "Meta+Space"$'\t'"Alt+Space"
-      qdbus6 org.kde.KWin /KWin reconfigure
 
-      #fixes ly for update
+      #updates ly in ram
       sudo systemctl enable ly@tty2.service -f
-
-      echo -e "\n$ansi_art\n"
+      qdbus6 org.kde.KWin /KWin reconfigure
+      
       echo -e "${GREEN}SUCCESSFULLY UPDATED!${NC}"
       break #this means this is the end of the line of code
       ;;
