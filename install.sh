@@ -301,3 +301,25 @@ echo "Invalid option. Please pick 1, 2, 3, or 4."
 ;; #do not put a brake here
 esac
 done
+
+while true; do
+echo -e "${YELLOW}reboot needed for full functionality.${NC}"
+read -p "Would you like to reboot? [Y/n]:"
+
+case "$choice" in 
+  [Yy]* | "" ) 
+    echo "rebooting now"
+    sudo reboot now
+    brake
+    ;;
+  [Nn]* ) 
+    # This triggers if they type N, n, No, or no
+    exit 0
+    ;;
+  * ) 
+    # This triggers if they mash random keys on the keyboard
+    clear
+    echo "please pick [Y/n]"
+    ;;
+esac
+done

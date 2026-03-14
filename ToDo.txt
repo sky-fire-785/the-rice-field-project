@@ -11,3 +11,4 @@ Finish KDE THEME
 7. app style:       ~/
 8. start bar:       ~/.local/share/plasma/look-and-feel/Project-Aphrodite/contents/layouts/org.kde.plasma.desktop-layout.js
 
+make the script see if ZSH was installed before and when removed project aphrodite will rebuild the old ZSH install

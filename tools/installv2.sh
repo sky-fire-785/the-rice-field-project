@@ -84,9 +84,9 @@ done
 
 while true; do
 echo -e "${YELLOW}reboot needed for full functionality.${NC}"
-read -p "Would you like to reboot? [Y/n]:"
+read -p "Would you like to reboot? [Y/n]:" choice2
 
-case "$choice" in 
+case "$choice2" in 
   [Yy]* | "" ) 
     echo "rebooting now"
     sudo reboot now

@@ -38,13 +38,12 @@ if ! curl -#L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fir
     curl -#L -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
 fi
 if ! curl -#L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" ;then
-    echo -e "${RED}WARNING: Update Failed for .pk10.zsh${NC}"
+    echo -e "${RED}WARNING: Update Failed for .p10k.zsh${NC}"
     echo -e "${YELLOW}Trying to fix PowerLevel10k...${NC}"
 
-    sudo rm-rf ~/.pk10.zsh
+    sudo rm-rf ~/.p10k.zsh
     curl -#L -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
 fi
-
 
 #updates fastfetch
 echo "updating fastfetch..."
@@ -126,7 +125,9 @@ kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krun
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krunner.desktop" --key "RunClipboard" "none"
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "kitty.desktop" --key "_launch" "Ctrl+Shift+T"
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.rofi.desktop" --key "_launch" "Meta+Space"$'\t'"Alt+Space"
+kwriteconfig6 --file krunnerrc --group "General" --key "ActivateWhenTypingOnDesktop" "false"
 
 #updates ly in ram
 sudo systemctl enable -f ly@tty2.service
+#updates the new KDE keybord shortcuts
 qdbus6 org.kde.KWin /KWin reconfigure
