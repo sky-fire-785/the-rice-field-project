@@ -64,12 +64,12 @@ sudo mv /etc/pacman.conf /etc/.old_pacman.conf
 sudo curl -#L -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-785/project-aphrodite/refs/heads/Main-PC/pacman/pacman.conf" || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #makes a new kde theme
-mkdir ~/.icons
-mkdir ~/.local/share/plasma/look-and-feel
-mkdir ~/.local/share/aurorae/themes
-curl -#L -o ~/.icons/temp ""
-curl -#L -o ~/.local/share/plasma/look-and-feel/temp ""
-curl -#L -o ~/.local/share/aurorae/themes/temp ""
+##mkdir ~/.icons
+##mkdir ~/.local/share/plasma/look-and-feel
+##mkdir ~/.local/share/aurorae/themes
+##curl -#L -o ~/.icons/temp ""
+##curl -#L -o ~/.local/share/plasma/look-and-feel/temp ""
+##curl -#L -o ~/.local/share/aurorae/themes/temp ""
 
 tar -xf filename -C filename --keep-newer-files
 
