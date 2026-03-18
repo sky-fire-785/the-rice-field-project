@@ -15,7 +15,7 @@ if ! sudo pacman -Syu --needed git kitty zsh fastfetch wget fuse ly extra/ttf-no
     exit 1
 fi
 rm -rf ~/yay && git clone https://aur.archlinux.org/yay.git ~/yay && cd ~/yay && makepkg -si --noconfirm && cd ~ || echo -e "${RED}WARNING: yay Install Failed${NC}"
-yay -S visual-studio-code-bin rofi-file-browser-extended-patched --noconfirm || echo -e "${RED}WARNING: Install Failed${NC}"
+yay -Sy visual-studio-code-bin rofi-file-browser-extended-patched --noconfirm || echo -e "${RED}WARNING: Install Failed${NC}"
 
 #install zsh & pk10 with some plugins
 sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended || echo -e "${RED}WARNING: ZSH Install Failed${NC}"
@@ -67,9 +67,11 @@ sudo curl -#L -o /etc/pacman.conf "https://raw.githubusercontent.com/sky-fire-78
 mkdir ~/.icons
 mkdir ~/.local/share/plasma/look-and-feel
 mkdir ~/.local/share/aurorae/themes
+curl -#L -o ~/.icons/temp ""
+curl -#L -o ~/.local/share/plasma/look-and-feel/temp ""
+curl -#L -o ~/.local/share/aurorae/themes/temp ""
 
-
-
+tar -xf filename -C filename --keep-newer-files
 
 #sets ly's configs
 sudo sed -i 's/^[# \t]*asterisk.*/asterisk = 0x2022/' /etc/ly/config.ini

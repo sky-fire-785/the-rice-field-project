@@ -108,9 +108,8 @@ sudo sed -i 's/^[# \t]*save.*/save = true/' /etc/ly/config.ini
 
 #updates KDE config
 ##echo " updating the KDE configuration..."
-##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/metadata.json -o ~/.local/share/plasma/look-and-feel/skys/metadata.json "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING:KDE's metadata.json Update Failed${NC}"
-##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/defaults -o ~/.local/share/plasma/look-and-feel/skys/contents/defaults "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults" || echo -e "${RED}WARNING:KDE's defaults Update Failed${NC}"
-##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js -o ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING:KDE's org.kde.plasma.desktop-layout.js Update Failed${NC}"
+
+tar -xf filename -C filename --keep-newer-files
 
 #updates KDE shortcuts
 if ! curl -#L -z ~/.local/share/applications/net.local.rofi/desktop -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" ;then
