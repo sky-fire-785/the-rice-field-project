@@ -38,13 +38,12 @@ if ! curl -#L -z ~/.zshrc -o ~/.zshrc "https://raw.githubusercontent.com/sky-fir
     curl -#L -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
 fi
 if ! curl -#L -z ~/.p10k.zsh -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" ;then
-    echo -e "${RED}WARNING: Update Failed for .pk10.zsh${NC}"
+    echo -e "${RED}WARNING: Update Failed for .p10k.zsh${NC}"
     echo -e "${YELLOW}Trying to fix PowerLevel10k...${NC}"
 
-    sudo rm-rf ~/.pk10.zsh
+    sudo rm-rf ~/.p10k.zsh
     curl -#L -o ~/.p10k.zsh "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/pk10/.p10k.zsh" || echo -e "${RED}WARNING: .pk10.zsh Install Failed${NC}"
 fi
-
 
 #updates fastfetch
 echo "updating fastfetch..."
@@ -109,9 +108,8 @@ sudo sed -i 's/^[# \t]*save.*/save = true/' /etc/ly/config.ini
 
 #updates KDE config
 ##echo " updating the KDE configuration..."
-##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/metadata.json -o ~/.local/share/plasma/look-and-feel/skys/metadata.json "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/metadata.json" || echo -e "${RED}WARNING:KDE's metadata.json Update Failed${NC}"
-##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/defaults -o ~/.local/share/plasma/look-and-feel/skys/contents/defaults "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/defaults" || echo -e "${RED}WARNING:KDE's defaults Update Failed${NC}"
-##curl -#L -z ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js -o ~/.local/share/plasma/look-and-feel/skys/contents/layouts/org.kde.plasma.desktop-layout.js "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/kde%20config/contents/layouts/org.kde.plasma.desktop-layout.js" || echo -e "${RED}WARNING:KDE's org.kde.plasma.desktop-layout.js Update Failed${NC}"
+
+tar -xf filename -C filename --keep-newer-files
 
 #updates KDE shortcuts
 if ! curl -#L -z ~/.local/share/applications/net.local.rofi/desktop -o ~/.local/share/applications/net.local.rofi.desktop "https://raw.githubusercontent.com/sky-fire-785/Project-Aphrodite/refs/heads/Main-PC/rofi/net.local.rofi.desktop" ;then
@@ -126,7 +124,9 @@ kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krun
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "org.kde.krunner.desktop" --key "RunClipboard" "none"
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "kitty.desktop" --key "_launch" "Ctrl+Shift+T"
 kwriteconfig6 --file kglobalshortcutsrc --group "services" --group "net.local.rofi.desktop" --key "_launch" "Meta+Space"$'\t'"Alt+Space"
+kwriteconfig6 --file krunnerrc --group "General" --key "ActivateWhenTypingOnDesktop" "false"
 
 #updates ly in ram
 sudo systemctl enable -f ly@tty2.service
+#updates the new KDE keybord shortcuts
 qdbus6 org.kde.KWin /KWin reconfigure
